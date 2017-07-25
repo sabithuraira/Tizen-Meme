@@ -21,57 +21,30 @@
 }());
 
 (function(tau) {
-	/**
-	 * elPage - Grid view page element
-	 * elGrid - Grid view element
-	 * modeBtn - Mode toggle button element
-	 * gridList - TAU grid view instance
-	 */
-	var elPage = document.getElementById("grid-page"),
-		elGrid = document.getElementById("gridview"),
-		modeBtn = document.getElementById("modeBtn"),
-		gridList, meme_list;
-
-	/**
-	 * Toggles reorder/edit mode
-	 */
-	function modeHandler() {
-		if (gridList.options.reorder === true) {
-			gridList.option("reorder", false);
-			modeBtn.textContent = "Edit";
-		} else {
-			gridList.option("reorder", true);
-			modeBtn.textContent = "Done";
-		}
-	}
+	var  elPage = document.getElementById("list-styles-page"),
+		list_view = document.getElementById("list-id"), 
+		meme_list;
 	
 	function show_meme(){
-		$.getJSON("https://api.imgflip.com/get_memes", function(response) { 
+		$.getJSON("https://api.imgflip.com/get_memes", function(response) {
 	    	meme_list = response.data.memes;
-	    	console.log(meme_list)
 	    	
-	    	var str_grid="";
-	    	
+	    	var str_list="";
 	    	for(var i=0;i<meme_list.length;++i){
-	    		str_grid+="<li class='ui-gridview-item'>"
-					+ "<img class='ui-gridview-image' src='"+meme_list[i].url+"'>"
-					+ "<p class='ui-gridview-label'>Outer Label</p>"
-					+ "<div class='ui-gridview-handler'></div></li>";
+	    		str_list+='<li class="ui-li-static li-has-thumb"><img src="'+meme_list[i].url+'" class="li-thumb" />'+meme_list[i].name+'</li>';
+//			</li>meme_list[i].url+"'><div class='ui-gridview-handler'></div></li>";
+//	    		var item = document.createElement('li');
+//	            item.setAttribute('class','ui-li-static li-has-thumb"');
+//	            item.innerHTML = '<img src="'+ meme_list[i].url +'" alt="icon" class="li-thumb">'+meme_list[i].name;
+//	    		list_view.addItem(item, 1);
 	    	}
 	    	
-	    	elGrid.innerHTML=str_grid;
+	    	list_view.innerHTML=str_list;
 	    });
 	}
-
-	/**
-	 * pageshow event handler
-	 * Do preparatory works and adds event listeners
-	 */
+	
 	elPage.addEventListener("pageshow", function() {
-		gridList = tau.widget.GridView(elGrid);
-		
 		show_meme();
-//		modeBtn.addEventListener("click", modeHandler);
 	});
 
 	/**
@@ -79,6 +52,6 @@
 	 * Destroys and removes event listeners
 	 */
 	elPage.addEventListener("pagebeforehide", function() {
-		modeBtn.removeEventListener("click", modeHandler);
+//		modeBtn.removeEventListener("click", modeHandler);
 	});
 }(window.tau));

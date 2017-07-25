@@ -145,16 +145,16 @@
 /******************* list have left thumbnail image ********************/
 .ui-li-anchor.li-has-thumb > a,
 .ui-li-static.li-has-thumb {
-	padding-left: 51px;
+	padding-left: 71px;
 }
 .ui-li-anchor.li-has-thumb > a .li-thumb,
 .ui-li-static.li-has-thumb .li-thumb {
 	position: absolute;
-	left: 16px;
-	top: 50%;
+	left: 3px;
+	top: 20%;
 	margin-top: -13px;
-	width: 27px;
-	height: 27px;
+	width: 65px;
+	height: 65px;
 }
 
 /***************** list has checkbox/radio ***********************/
@@ -479,12 +479,22 @@
 /****************************************************************/
 /*                      Grid List                               */
 /****************************************************************/
+.ui-gridview .ui-gridview-item > img {
+    border: 1px;
+}
+
 .ui-gridview .ui-gridview-item > label {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+.ui-gridview .ui-gridview-item > img {
+    position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .ui-gridview .ui-gridview-item > label > input[type="checkbox"] {
